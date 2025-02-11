@@ -1,2 +1,2 @@
 # ConCon_Alignment
-Matlab code for aligning cortical surface based structural connectivity profiles
+Matlab code for aligning cortical surface based on continuous connectivity (ConCon) profiles
