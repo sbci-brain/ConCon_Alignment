@@ -13,24 +13,27 @@ addpath('utils/')
 
 %% Global settings
 
-input_folder = '/overflow/zzhanglab/encore_results/';
+input_folder = '../grid';
+input_folder2 = '../subject_ids';
+input_folder3 = '../example';
 
 % CHANGE THIS TO YOUR OWN WORKING DIRECTORY
-output_folder = '/work/users/m/r/mrcole/encore_test/';
+output_folder = '../results';
 
 % grid to do evaluations over
 [lh_grid,~] = read_vtk(sprintf('%s/lh_grid_avg_0.94.vtk', input_folder));
 [rh_grid,~] = read_vtk(sprintf('%s/rh_grid_avg_0.94.vtk', input_folder));
 
 % load all the subject IDs
-load(sprintf('%s/sublist.mat', input_folder), 'sublist')
+sublist = load(sprintf('%s/hcp_all_ids.csv', input_folder2));
 
 % using the same subjects the we did for the
 % template and registration in the previous scripts
 N_subs = 10;
 
-rng(54569783); % random seed for reproducibility
-selected_subs = sublist(randsample(length(sublist), N_subs));
+%rng(54569783); % random seed for reproducibility
+%selected_subs = sublist(randsample(length(sublist), N_subs));
+selected_subs = sublist(1:N_subs); % the example data
 
 %% Setup (same as for the template)
 
@@ -55,7 +58,7 @@ clear PCA_mat
 PCA_mat = zeros(N_subs,N_elems);
 
 for i = 1:N_subs
-    tmp = load(sprintf('%s/SC_%s.mat', input_folder, selected_subs(i)));
+    tmp = load(sprintf('%s/SC_%s.mat', input_folder3, string(selected_subs(i))));
 
     % load SC the same way as with the template
     SC = (tmp.SC + tmp.SC') - 2*diag(diag(tmp.SC));
@@ -75,8 +78,8 @@ PCA_mat = zeros(N_subs,N_elems);
 warp_mat = zeros(N_subs,P);
 
 for i = 1:N_subs
-    tmp = load(sprintf('%s/SC_%s.mat', input_folder, selected_subs(i)));
-    load(sprintf('%s/registered_warp_%s.mat', output_folder, selected_subs(i)),'lh_warp','rh_warp');
+    tmp = load(sprintf('%s/SC_%s.mat', input_folder3, string(selected_subs(i))));
+    load(sprintf('%s/registered_warp_%s.mat', output_folder, string(selected_subs(i))),'lh_warp','rh_warp');
 
     % load SC the same way as with the template
     SC = (tmp.SC + tmp.SC') - 2*diag(diag(tmp.SC));

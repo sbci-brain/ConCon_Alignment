@@ -16,8 +16,10 @@
 % 30-Apr-2024 ; Last revision: 02-May-2024 
 
 % Load low resolution SBCI mesh grid
-lh_grid = read_vtk('/overflow/zzhanglab/encore/encore_results/lh_grid_avg_0.94.vtk');
-rh_grid = read_vtk('/overflow/zzhanglab/encore/encore_results/rh_grid_avg_0.94.vtk');
+input_folder = '../grid';
+
+[lh_grid,~] = read_vtk(sprintf('%s/lh_grid_avg_0.94.vtk', input_folder));
+[rh_grid,~] = read_vtk(sprintf('%s/rh_grid_avg_0.94.vtk', input_folder));
 
 % Convert struct to format used by AABB tree
 lh_grid.V = lh_grid.vtx';
@@ -31,13 +33,13 @@ rh_tree = AABBtree(rh_grid);
 
 % load required SBCI data for mapping and analysis
 [sbci_parc, sbci_mapping, adjacency] = load_sbci_data('/overflow/zzhanglab/encore/SBCI_Toolkit/example_data', '0.94');
-sbci_surface = load_sbci_surface('/overflow/zzhanglab/encore/SBCI_Toolkit/example_data');
+sbci_surface = load_sbci_surface('../SBCI_Toolkit/example_data');
 
 lh_points = normr(sbci_surface.sphere.lh_surf.vtx.');
 rh_points = normr(sbci_surface.sphere.rh_surf.vtx.');
 
 % Perform upsampling
-example_data = load('/overflow/zzhanglab/encore/SBCI_Toolkit/example_data/example_sfc.mat', 'sfc');
+example_data = load('../SBCI_Toolkit/example_data/example_sfc.mat', 'sfc');
 
 % create a mask for the corpus callosum
 mask = (sbci_parc(8).labels == 1) | (sbci_parc(8).labels == 9);

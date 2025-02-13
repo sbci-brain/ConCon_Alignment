@@ -30,8 +30,9 @@ sublist = load(sprintf('%s/hcp_all_ids.csv', input_folder2));
 % select N random subjects to create the template
 N_subs = 10;
 
-rng(54569783); % random seed for reproducibility
-selected_subs = sublist(randsample(length(sublist), N_subs));
+%rng(54569783); % random seed for reproducibility
+%selected_subs = sublist(randsample(length(sublist), N_subs));
+selected_subs = sublist(1:N_subs); % the example data
 
 %% Setup
 
