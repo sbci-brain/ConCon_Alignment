@@ -34,3 +34,15 @@ We provide data for 10 example subjects, each presented as a $4121\times 4121$ u
      ```matlab
      run('./scripts/register_test.m')
      ```
+4. **PCA Test**  
+   - Run the PCA test script to compute PCA scores for both:  
+     1. Concatenated, flattened original structural matrices  
+     2. Concatenated, flattened registered structural matrices  
+     3. Concatenated, geodesic distance between the original mesh and the warped mesh vertices
+
+   - Execute the script using:  
+     ```matlab
+     run('./scripts/pca_test.m')
+     ```
+
+

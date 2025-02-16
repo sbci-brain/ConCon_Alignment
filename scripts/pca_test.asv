@@ -70,8 +70,7 @@ for i = 1:N_subs
 end
 
 %[~,orig_score,~,orig_explained,~] = fastpca(PCA_mat);
-[~,orig_score,~,~,orig_explained] = pca(PCA_mat);
-save('../results/orig_score.mat', 'orig_score');
+save('./results/orig_score.mat', 'orig_score');
 
 %% PCA for registered SC
 
@@ -101,8 +100,8 @@ for i = 1:N_subs
 end
 
 %[~,reg_score,~,reg_explained,~] = fastpca(PCA_mat);
-[~,reg_score,~,~,reg_explained] = pca(PCA_mat);
+[~,reg_score,~,~,reg_explained] = pca(warp_mat);
 [~,warp_score,~,~,warp_explained] = pca(warp_mat);
 
-save('../results/reg_score.mat', 'reg_score');
-save('../results/warp_score.mat', 'warp_score');
+save('./results/reg_score.mat', 'reg_score');
+save('./results/warp_score.mat', 'warp_score');
