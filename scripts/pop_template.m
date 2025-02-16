@@ -73,3 +73,4 @@ end
 % create a template using a maximum of 200 iterations
 template = encore.get_template(SC,200);
 save(sprintf('%s/template.mat', output_folder),'template','-v7.3');
+disp("Template processing complete. The generated template is located in ./results")

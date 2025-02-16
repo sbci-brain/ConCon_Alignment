@@ -24,25 +24,25 @@ We provide data for 10 example subjects, each presented as a $4121\times 4121$ u
    - Download the dataset from the provided Dropbox link.  
    - Place the files in the `./example` directory.  
 2. **Generate a Template**  
-   - Run the following script to create a template from the example data:  
-     ```matlab
-     run('./scripts/pop_template.m')
+   - Run the following from the terminal to create a template from the example data:  
+     ```sh
+     matlab -batch "run('./scripts/pop_template.m')"
      ```
    - The generated `template.mat` file will be saved in the `./results` directory.  
 3. **Align Subjects to the Template**  
    - Execute the registration script to align all example subjects to the generated template:  
-     ```matlab
-     run('./scripts/register_test.m')
+     ```sh
+     matlab -batch "run('./scripts/register_test.m')"
      ```
 4. **PCA Test**  
    - Run the PCA test script to compute PCA scores for both:  
      1. Concatenated, flattened original structural matrices  
      2. Concatenated, flattened registered structural matrices  
      3. Concatenated, geodesic distance between the original mesh and the warped mesh vertices
-
+   - The score matrices are stored in the `./results` directory.
    - Execute the script using:  
-     ```matlab
-     run('./scripts/pca_test.m')
+     ```sh
+     matlab -batch "run('./scripts/pca_test.m')"
      ```
 
 
